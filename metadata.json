@@ -1,0 +1,5 @@
+{
+  "name": "Groq Media Transcriber",
+  "description": "Download and transcribe Instagram and YouTube videos to Hinglish using Groq Whisper and Llama 3.",
+  "requestFramePermissions": []
+}
