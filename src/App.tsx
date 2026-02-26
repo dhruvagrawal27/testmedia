@@ -18,19 +18,6 @@ import {
 type DownloaderType = "instagram" | "youtube";
 
 export default function App() {
-  const [downloader, setDownloader] = useState<DownloaderType>("instagram");
-  const [url, setUrl] = useState("");
-  const [enableHinglish, setEnableHinglish] = useState(true);
-  const [generatePrompts, setGeneratePrompts] = useState(false);
-  const [promptType, setPromptType] = useState<"Sora 2" | "Veo 3">("Sora 2");
-  const [cameos, setCameos] = useState<string[]>(["", "", ""]);
-
-  const [loading, setLoading] = useState(false);
-  const [status, setStatus] = useState("");
-  const [error, setError] = useState("");
-  const [result, setResult] = useState<any>(null);
-  const [copied, setCopied] = useState(false);
-
   const handleCameoChange = (index: number, value: string) => {
     const newCameos = [...cameos];
     newCameos[index] = value;
@@ -42,7 +29,6 @@ export default function App() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-
   const handleProcess = async () => {
     if (!url.trim()) {
       setError("Please enter a valid URL");
@@ -54,10 +40,7 @@ export default function App() {
     setResult(null);
 
     try {
-      // 1. Get Media URL
-      setStatus(
-        `Fetching ${downloader === "instagram" ? "Instagram" : "YouTube"} content...`,
-      );
+      // ...existing code...
       const infoRes = await fetch(`/api/${downloader}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -133,6 +116,22 @@ export default function App() {
       setLoading(false);
     }
   };
+
+  // State
+  const [downloader, setDownloader] = useState<DownloaderType>("instagram");
+  const [url, setUrl] = useState("");
+  const [enableHinglish, setEnableHinglish] = useState(true);
+  const [generatePrompts, setGeneratePrompts] = useState(false);
+  const [promptType, setPromptType] = useState<"Sora 2" | "Veo 3">("Sora 2");
+  const [cameos, setCameos] = useState<string[]>(["", "", ""]);
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState("");
+  const [error, setError] = useState("");
+  const [result, setResult] = useState<any>(null);
+  const [copied, setCopied] = useState(false);
+
+  // Handlers
+
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-indigo-500/30">
